@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - fxdatabase@localhost" uuid="59b62515-ed92-4d34-b05f-83111050e602">
+    <database-info product="MySQL" version="5.7.11-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="fxdatabase"/>
+      <table id="2" parent="1" name="new_table"/>
+      <table id="3" parent="1" name="users"/>
+      <column id="4" parent="2" name="user">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="5" parent="2" name="password">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <key id="6" parent="2" name="PRIMARY">
+        <columns>user</columns>
+        <primary>1</primary>
+      </key>
+      <column id="7" parent="3" name="user">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="8" parent="3" name="password">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="9" parent="3" name="type">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <key id="10" parent="3" name="PRIMARY">
+        <columns>user</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
