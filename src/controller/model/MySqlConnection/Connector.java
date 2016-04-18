@@ -1,7 +1,6 @@
 package controller.model.MySqlConnection;
 
-import com.sun.javafx.scene.layout.region.Margins;
-import controller.model.Child;
+import controller.model.members.Child;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -65,7 +64,7 @@ public class Connector {
                 String phone = rs.getString(5);
                 String prCode = rs.getString(6);
 
-                Child tmp = new Child(name, lastName);
+                Child tmp = new Child(name, lastName, adress, Integer.parseInt(prCode), phone, phone , "2000-04-19", "1");
                 tmp.setadres(adress);
                 tmp.setPhoneNumber(phone);
                 tmp.setPostalCode(Integer.parseInt(prCode));

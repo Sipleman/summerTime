@@ -1,6 +1,7 @@
 package controller.model.utils;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -58,4 +59,9 @@ public class DateUtil {
         // Try to parse the String.
         return DateUtil.parse(dateString) != null;
     }
+
+    public static int getAge(LocalDate date1){
+        return Period.between(date1, LocalDate.now()).getYears();
+    }
+
 }

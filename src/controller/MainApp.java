@@ -1,33 +1,42 @@
 package controller;
 
-import controller.model.Child;
-import controller.model.MySqlConnection.Connector;
+import controller.Command.Command;
+import controller.Command.Commands.CallLoginWindowCommand;
+import controller.Command.Commands.CallMainMenuWindow;
+import controller.Command.Commands.CallMembersOverview;
+import controller.Command.Commands.InitRootPane;
+import controller.Command.Switcher;
+import controller.model.members.Child;
 import controller.view.LogWindowHandler;
 import controller.view.membersOverview;
 import javafx.application.Application;
+import javafx.beans.binding.ObjectExpression;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainApp extends Application {
 
     Stage primaryStage;
     private BorderPane rootPane;
 
+    Switcher switcher;
+
+
+
     private ObservableList<Child> list = FXCollections.observableArrayList();
     public ObservableList<Child> getList(){
         return list;
     }
 
-    //public ObservableList<Child> getListFromTable(){
-    //}
 
     private membersOverview memberController;
     public membersOverview getMemberController(){
@@ -39,8 +48,18 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("SummerApp");
+
         initRootWindow();
-        showLoginWindow();
+        List<Command> list = new ArrayList<Command>();
+        list.add(new CallLoginWindowCommand(rootPane, this));
+        list.add(new CallMembersOverview(rootPane, this));
+        list.add(new CallMainMenuWindow(rootPane, this));
+        list.add(new InitRootPane(rootPane, primaryStage));
+            Switcher.initCommands(list);
+        switcher.callLoginWindow(primaryStage);
+
+//        initRootWindow();
+//        showLoginWindow();
         //showMemberWindow();
     }
 
@@ -108,12 +127,6 @@ public class MainApp extends Application {
         }
     }
     public MainApp(){
-        list.add(new Child("asdasdasd","asdsa"));
-        list.add(new Child("asdasdasd","asdsa"));
-        list.add(new Child("asdasdasd","asdsa"));
-        list.add(new Child("asdasdasd","asdsa"));
-        list.add(new Child("asdasdasd","asdsa"));
-        list.add(new Child("asdasdasd","asdsa"));
     }
     public static void main(String[] args) {
         launch(args);
